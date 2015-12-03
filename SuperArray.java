@@ -1,17 +1,9 @@
-/*****************************
- * SKELETON for
- * class SuperArray --  A wrapper class for an array. 
- * Maintains functionality:
- *  access value at index
- *  overwrite value at index
- *  report number of meaningful items
- * Adds functionality to std Java array:
- *  resizability
- *  ability to print meaningfully
- *  add item (at end)
- *  insert item
- *  remove item (while maintaining "left-justification")
- *****************************/
+/*
+Team feckless-octo-turtle - Ruochong Wu, James Hua
+APCS1 pd 10
+HW40 -- Array of Grade 316
+2015-12-02
+*/
 
 public class SuperArray {
  
@@ -80,7 +72,7 @@ public class SuperArray {
     //adds an item after the last item
     public void add( int newVal ) {
 	_size += 1;
-	_data[_lastPos+1] = newVal;
+	_data[_lastPos+1] = newVal;  //slot right after last meaningfull slot is filled
 	_lastPos+=1;
     }
 
@@ -89,7 +81,7 @@ public class SuperArray {
     public void add( int index, int newVal ) {
 	_size += 1;
 	_lastPos += 1;
-	for ( int x = _lastPos ; x > index ; x--){
+	for ( int x = _lastPos ; x > index ; x--){ //shifts everything between index and _lastpos
 	    _data[x] = _data[x-1];
 	}
 	_data[index] = newVal;
@@ -99,10 +91,10 @@ public class SuperArray {
     //shifts elements left to fill in newly-empted slot
     public void remove( int index ) {
 	int[] new_data = new int[_data.length-1];
-	for (int count = 0 ; count < index ; count++){
+	for (int count = 0 ; count < index ; count++){  //copy everything before target
 	    new_data[count] = _data[count];
 	}
-	for (int count = index ; count<new_data.length ; count++){
+	for (int count = index ; count<new_data.length ; count++){ //copy everything after target, skipping the target, effectively removing it
 	    new_data[count] = _data[count + 1];
 	}
 	_lastPos -=1;
